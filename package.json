@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@vant/touch-emulator": "^1.4.0",
+    "element-ui": "^2.15.13",
+    "i": "^0.3.7",
+    "npm": "^9.8.1",
+    "vant": "^2.13.2"
+  }
+}
