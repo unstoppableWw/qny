@@ -1,0 +1,411 @@
+
+.chat-message.data-v-857a6980 {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  position: relative;
+}
+.my-message.data-v-857a6980 {
+  flex-direction: row-reverse;
+}
+.avatar_img.data-v-857a6980 {
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100%;
+}
+.content.data-v-857a6980 {
+  display: flex;
+  flex-direction: column;
+  position: relative; 
+  width: 62%;
+}
+.userName.data-v-857a6980{
+	font-size: 18rpx;
+	font-weight: 100;
+	color: darkgrey;
+}
+.my-userName.data-v-857a6980{
+	font-size: 18rpx;
+	font-weight: 100;
+	color: darkgrey;
+	align-self: flex-end;
+}
+.xitong.data-v-857a6980{
+	color: #4095E5;
+}
+.text.data-v-857a6980 {
+  display: inline-block;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 24rpx;
+  
+  border-radius: 10px;
+  background-color: #F5F5F5;
+  text-align: justify;
+  word-break: break-all;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+ align-self: flex-start;
+}
+.my-text.data-v-857a6980 {
+  display: inline-block;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 24rpx;
+  
+  border-radius: 10px;
+  align-self: flex-end;
+  background-color: #4095E5;
+  color: white;
+  text-align: justify;
+  word-break: break-all;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+}
+.time.data-v-857a6980 {
+  font-size: 12px;
+  color: lightgray;
+  position: absolute;
+  bottom: -15px;
+  width: 260rpx;
+}
+.my-time.data-v-857a6980 {
+  right: 0;
+  left: auto;
+  width: 260rpx;
+  text-align: right;
+}
+.my-text .time.data-v-857a6980 {
+  right: 0;
+  left: auto;
+}
+.text .time.data-v-857a6980 {
+  left: 0;
+  right: auto;
+}
+
+
+.bg_1{
+	position: fixed;
+	background-color: white;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1001;
+}
+.compete_bg{
+	
+	background-size: cover;
+}
+.compete_top{
+	display: flex;
+	flex-direction: column;
+	weight:100%;
+	
+	align-items: center;
+}
+.compete_middle_1{
+	display: flex;
+	height:1500rpx;
+	background-image: url(/static/compete/compe_bg.png);
+	
+	background-size: 700rpx;
+	background-position: center 100%;
+	background-repeat: no-repeat;
+	justify-content: space-between;
+}
+.compete_middle_2{
+	display: flex;
+	height:83%;
+	justify-content: space-between;
+}
+.compete_middle_left{
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+.compete_middle_middle{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	
+	flex: 1;
+}
+.compete_middle_right{
+	display: flex;
+	
+	
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+	flex: 1;
+}
+.compete_bottom{
+	display: flex;
+	height: 300rpx;
+	weight:100%;
+	
+	
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	justify-content: center;
+}
+/* 对练的style */
+.duilian_title{
+	height: 120rpx;
+	align-items: center;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 10rpx;
+}
+.duilian_touxiang{
+	width: 75rpx;
+	height: 75rpx;
+	margin-right: 1rpx;
+	margin-left: 5rpx;
+	border-radius: 50%;
+	border: #4095E5;
+}
+.duilian_compete_bottom{
+	display: flex;
+	
+	weight:100%;
+	height: 10%;
+	
+	align-items: center;
+	justify-content: flex-end;
+}
+.Box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 450px;
+    width: 100%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+.Box .time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+}
+.time_button{
+	
+	 color: white;
+	 margin-right: 30rpx;
+	  border-radius: 100%;
+	   width: 100rpx;
+	   height: 100rpx;
+}
+.chat_button{
+	position: absolute;
+	left: 40rpx; 
+	width: 90rpx;
+	height: 70rpx;
+}
+.chat_button_zhao{
+	position: absolute;
+	right: 40rpx; 
+	width: 70rpx;
+	height: 70rpx;
+}
+.button_talk_start{
+	position: absolute;
+	left: 0;
+	right: 0;
+	color: white;
+	background-color: #4095E5; 
+	border-radius: 40rpx;
+	 width: 200rpx;
+	 height: 100rpx;
+	 font-size: 30rpx;
+	 line-height: 105rpx;
+}
+.button_talk_end{
+	position: absolute;
+	left: 0;
+	right: 0;
+	color: white;
+	background-color: #F4CE98; 
+	border-radius: 40rpx;
+	 width: 200rpx;
+	 height: 100rpx;
+	 font-size: 30rpx;
+	 line-height: 105rpx;
+}
+/* 弹窗样式 */
+.popup_chat {
+	position: absolute;
+	top: 20%;
+	width: 90%;
+	height: 950rpx;
+	border-radius: 10%;
+	left: 5%;
+	right:5%;
+	
+	z-index: 2000;
+	/* background-image: url(../../static/compete/chat_5.png); */
+	background-color: white;
+	border-radius: 50rpx;
+	background-size: 100% ;
+	background-repeat: no-repeat;
+}
+.popup_chat_in{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+.popup_overlay {
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 1001;
+	opacity: .80;
+}
+.popup_content {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	width: 75%;
+	height: 800rpx;
+	border-radius: 30rpx;
+	border: 10px solid white;
+	background-color: white;
+	z-index: 1002;
+}
+.Ai_popup_content {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	width: 90%;
+	height: 1100rpx;
+	border-radius: 30rpx;
+	border: 10px solid white;
+	background-color: white;
+	z-index: 1002;
+}
+.popup_content_in{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+.popup_top{
+		display: flex;
+		justify-content: flex-start;
+		width: 100%;
+		height: 10%;
+}
+.popup_bottom{
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+.popup_tijiao{
+	display: flex;
+	background-color: #4095E5;
+	border-radius: 40rpx;
+	width: 180rpx;
+	height: 90rpx;
+	
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409EFF;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.start_button_1{
+	color: white;
+	background-color: #CECECE;
+	 border-radius: 40rpx;
+	  width: 200rpx;
+	  height: 100rpx;
+	  font-size: 30rpx;
+	  line-height: 100rpx;
+}
+.start_button_2{
+	color: white;
+	background-color: #F4CE98;
+	 border-radius: 40rpx;
+	  width: 200rpx;
+	  height: 100rpx;
+	  font-size: 30rpx;
+	  line-height: 100rpx;
+}
+.tanchuang{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+.tanchuang_inner{
+	position: fixed;
+	top: 20%;
+	left: 10%;
+	width: 75%;
+	height: 400rpx;
+	border-radius: 20rpx;
+	border: 10px solid white;
+	background-color: white;
+	z-index: 1002;
+}
+.tanchuang_bottom{
+	flex: 1;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	margin-top: 100rpx;
+}
+.tanchuang_tijiao{
+	display: flex;
+	background-color: #4095E5;
+	border-radius: 40rpx;
+	width: 160rpx;
+	height: 90rpx;
+	
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.width-95{
+	width: 95%;
+}
+.margin10{
+	margin: 10rpx;
+}
+

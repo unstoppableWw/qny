@@ -1,0 +1,203 @@
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  overflow: auto;
+}
+.centered-image {
+  max-width: 100%; /* 设置图片最大宽度 */
+  max-height: 100%; /* 设置图片最大高度 */
+  display: block; /* 将图片设置为块级元素 */
+  margin: 0 auto; /* 水平居中显示 */
+  margin-top: auto; /* 垂直居中显示 */
+  margin-bottom: auto; /* 垂直居中显示 */
+}
+
+/* 添加动态效果的 CSS 定义 */
+.card {
+  /* 卡片的样式 */
+  background-color: white;
+  border-radius: 5%;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+.enlarge {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1); /* 放大效果 */
+}
+.bg{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.refresh-text {
+  text-align: center;
+  line-height: 80px;
+  color: #999;
+}
+.gradient-background {
+  /* 使用linear-gradient设置渐变背景 */
+  
+  width: 100%;
+  background-size: cover;
+  height: 80rpx;
+}
+.post-container{
+	display: block;
+	align-self: center;
+	padding-top: 1%;
+	width: 100%;
+	margin: 0 auto; /* 添加水平居中对齐 */
+}
+.post-header{
+	display: flex; /* 设置为flex布局 */
+	justify-content: space-between; /* 将标题和图片在同一行并排显示 */
+	width: 98%;
+	height: auto;
+	margin-top: 1%;
+}
+.post-footer {
+  margin-top: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 96%;
+  padding: 10rpx;
+  padding-bottom: 0rpx;
+}
+.post-footer-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.post-footer-info-item {
+  display: flex;
+  align-items: center;
+  margin-left: 3%;
+}
+.post-item {
+	border: solid;
+	border-color: #333;
+	width: 86%;
+	background-color: white;
+	border-radius: 10rpx !important;
+	height: 300rpx;
+}
+.post-title {
+  font-size: 35rpx;
+  font-weight: bold;
+  color: black;
+  width: 60%;
+  padding-left: 20rpx;
+  word-wrap: break-word; /* 允许单词在容器宽度超过时自动换行 */
+  white-space: normal; /* 让文本超出容器宽度时自动换行 */
+  text-align: justify; /* 设置文字两端对齐 */
+}
+.post-content {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #666;
+}
+.post-image {
+  width: 80%;
+  height: 80rpx;
+  margin-top: 10px;
+}
+.swiper-container {
+  width: 80%; /* Set the maximum width to 80% of the page width */
+  margin: 0 ; /* Center the swiper-container on the page */
+  
+  margin-top: 30rpx;
+}
+.swiper-img {
+	width: 100%;
+	height: 96%;
+	object-fit: cover;
+	border-radius: 10px;
+	border: solid;
+	border-color: gainsboro;
+}
+.info_describe{
+	font-size: 30rpx;
+	margin-left: 35rpx;
+}
+.content_container {
+    width: 80%;
+    height: auto;
+    padding-left: 20rpx;
+    overflow: hidden;
+    word-wrap: break-word; /* 允许单词在容器宽度超过时自动换行 */
+    white-space: normal; /* 让文本超出容器宽度时自动换行 */
+    text-overflow: ellipsis;/* 文本超出时省略号 */
+	text-align: justify; /* 设置文字两端对齐 */
+}
+.text {
+    width: 100%;
+}
+.expand-button{
+	color: #4095E5;
+}
+
+/* 帖子图片样式 */
+.post-images {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding-left: 20rpx;
+  margin-left: 30rpx;
+}
+.single-image {
+  width: 100%;
+  max-height: 900rpx;
+ border-radius: 10rpx;
+}
+.two-images {
+  width: 300rpx;
+  height: 300rpx;
+ border-radius: 10rpx;
+ margin-right: 5px;
+ margin-bottom: 5px;
+}
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+  margin-top: 5px;
+}
+.grid-image {
+  width: 220rpx;
+  height: 220rpx;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 10rpx;
+}
+.popup_shuru{
+	display: flex;
+	border-radius: 40rpx;
+	
+	width: 600rpx;
+	height: 70rpx;
+	margin: 10rpx;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 3rpx;
+}
+movable-view {display: flex;align-items: center;justify-content: center;width: 100%;height:100%;}
+movable-area {height: 100%;width: 100%;position:fixed;overflow: hidden;}
+movable-view image{width:100%;}
+

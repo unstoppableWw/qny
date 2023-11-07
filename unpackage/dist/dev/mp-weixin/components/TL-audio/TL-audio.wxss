@@ -1,0 +1,20 @@
+
+.audio {
+	background: #FCFCFC;
+	padding-top: 20rpx;
+	padding-bottom: 20rpx;
+	/* border: 1rpx solid lightgray;
+	border-radius: 20rpx; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+	margin-left: 5%;
+	justify-content: between;
+	height: auto;
+}
+.icon {
+	width: 60rpx;
+	height: 60rpx;
+}
+

@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-group": "/uni_modules/uni-group/components/uni-group/uni-group",
+    "load-more": "/components/common/load-more"
+  }
+}

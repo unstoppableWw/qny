@@ -1,0 +1,10 @@
+
+#app{
+}
+.gradient-background {
+  /* 使用linear-gradient设置渐变背景 */
+  
+  background-size: cover;
+  height: 1300rpx;
+}
+

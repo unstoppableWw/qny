@@ -1,0 +1,94 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/msg/msg",
+    "pages/news/news",
+    "pages/my/my",
+    "pages/demo/demo",
+    "pages/compete_wulingdao/compete_wulingdao",
+    "pages/compete_jiegouhua/compete_jiegouhua",
+    "pages/head_chushi/head_chushi",
+    "pages/head_denglu/head_denglu",
+    "pages/head_zhuce/head_zhuce",
+    "pages/news/search_list",
+    "pages/head_bianji/head_bianji",
+    "pages/msg_guanzhu/msg_guanzhu",
+    "pages/msg_fensi/msg_fensi",
+    "pages/msg_tongzhi/msg_tongzhi",
+    "pages/msg_chat/msg_chat",
+    "pages/pai_post/pai_post",
+    "pages/pai_show_topic/pai_show_topic",
+    "pages/search/search",
+    "pages/his_page/his_page",
+    "pages/user_agreement/user_agreement",
+    "pages/user_privacy/user_privacy",
+    "pages/user_setting/user_setting",
+    "pages/user_feedback/user_feedback",
+    "pages/user_zhuxiao/user_zhuxiao",
+    "pages/write_tiezi/write_tiezi",
+    "components/common/ChatMessage",
+    "pages/pipei/pipei",
+    "pages/shangdian_1/shangdian_1",
+    "pages/shangdian_2/shangdian_2",
+    "pages/user_chat/user_chat",
+    "components/common/TrainChatMessage",
+    "components/common/reserveMessage",
+    "components/common/LikeAndCommentMessage",
+    "pages/member_detail/member_detail",
+    "components/common/tishi",
+    "pages/head_bianji2/head_bianji2",
+    "components/common/pickerAddress",
+    "components/common/pick-adress",
+    "pages/head_bianji3/head_bianji3",
+    "pages/compete_renji_wulingdao/compete_renji_wulingdao",
+    "pages/result_analyze/wulingdao_result_analyze",
+    "pages/result_analyze/jiegouhua_result_analyze",
+    "pages/sucaijilei/sucaijilei",
+    "pages/mianshitiku/mianshitiku",
+    "pages/compete_renji_jiegouhua/compete_renji_jiegouhua",
+    "pages/mianshitiku_shoucang/mianshitiku_shoucang",
+    "pages/sucaijilei_shoucang/sucaijilei_shoucang",
+    "pages/sucai_xiangqing/sucai_xiangqing",
+    "pages/mianshitiku_xiangqing/mianshitiku_xiangqing",
+    "pages/about_us/about_us",
+    "pages/user_blacklist/user_blacklist"
+  ],
+  "subPackages": [],
+  "window": {},
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#4095E5",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/index.png",
+        "selectedIconPath": "static/tabbar/indexed.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "社区",
+        "iconPath": "static/tabbar/news.png",
+        "selectedIconPath": "static/tabbar/newsed.png"
+      },
+      {
+        "pagePath": "pages/msg/msg",
+        "text": "消息",
+        "iconPath": "static/tabbar/msg.png",
+        "selectedIconPath": "static/tabbar/msged.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tabbar/my.png",
+        "selectedIconPath": "static/tabbar/myed.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "divider": "/components/common/divider",
+    "no-thing": "/components/common/no-thing"
+  }
+}

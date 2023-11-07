@@ -1,0 +1,125 @@
+
+.chat-message.data-v-2ab496a4 {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 6%;
+}
+.my-message.data-v-2ab496a4 {
+  flex-direction: row-reverse;
+}
+.avatar_img.data-v-2ab496a4 {
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.content.data-v-2ab496a4 {
+  display: flex;
+  flex-direction: column;
+  position: relative; 
+  width: 62%;
+}
+.text.data-v-2ab496a4 {
+  display: inline-block;
+  padding: 10px;
+  font-size: small;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: #F5F5F5;
+  text-align: justify;
+  word-break: break-all;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+ align-self: flex-start;
+}
+.my-text.data-v-2ab496a4 {
+  display: inline-block;
+  padding: 10px;
+  font-size: small;
+  font-weight: bold;
+  border-radius: 10px;
+  align-self: flex-end;
+  background-color: #4095E5;
+  color: white;
+  text-align: justify;
+  word-break: break-all;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+}
+.time.data-v-2ab496a4 {
+  font-size: 12px;
+  color: lightgray;
+  position: absolute;
+  bottom: -15px;
+  width: 260rpx;
+}
+.my-time.data-v-2ab496a4 {
+  right: 0;
+  left: auto;
+  width: 260rpx;
+  text-align: right;
+}
+.my-text .time.data-v-2ab496a4 {
+  right: 0;
+  left: auto;
+}
+.text .time.data-v-2ab496a4 {
+  left: 0;
+  right: auto;
+}
+.out_view.data-v-2ab496a4{
+	display: flex;
+	margin-bottom: 10px;
+	align-items: flex-start;
+	position: relative;
+}
+.card.data-v-2ab496a4 {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  padding: 16px;
+  margin-bottom: 10px;
+  border-radius: 40rpx;
+}
+.header.data-v-2ab496a4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20%;
+}
+.title.data-v-2ab496a4 {
+  font-size: 35rpx;
+  font-weight: bold;
+  color: #4095E5;
+}
+.room-number.data-v-2ab496a4 {
+  font-size: 22rpx;
+  /* font-weight: bold; */
+  color: lightgrey;
+}
+.description.data-v-2ab496a4 {
+  height: 50%;
+  margin-top: 36rpx;
+  font-size: 30rpx;
+}
+.button-container.data-v-2ab496a4 {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.centered-button.data-v-2ab496a4 {
+  margin-top: 10%;
+  background-color: #4095E5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 30rpx;
+  border-radius: 50rpx;
+}
+
+

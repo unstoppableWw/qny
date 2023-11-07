@@ -1,5 +1,18 @@
 <template>
 	<view id="app">
+		<uni-fab  ref="fab"
+					:pattern="pattern"
+					:horizontal="horizontal"
+					
+					@fabClick="fatie"
+					style="z-index: 999;"
+		></uni-fab>
+		<view  v-if="isVideo">
+			<video :src="videoSrc" show-center-play-btn="true" autoplay="true"  style="position: fixed;width: 100%;height: 100%;z-index: 9999;" @click="small_video"
+              >
+				
+			</video>
+		</view>
 		<view v-if="canSlip"
 			style="width: 100%;height: 100%;z-index: 1;position: fixed;background-color: red;opacity: 0.5;"></view>
 		<!-- <image src="../../static/tom.jpg" style="width:100%;height: 500rpx;position: absolute;filter: blur(50px);" ></image> -->
@@ -283,25 +296,14 @@
 														</view>
 														<view class="post-images" @click.stop="to_bigImage">
 															<!-- 单张图片 -->
-															<view
-																v-if="tolist(item2.articleImg).length==1&&item2.articleImg!=''"
-																style="width: 75%;">
-																<image :src="tolist(item2.articleImg)[0]"
+															<view style="width: 75%;">
+																<image :src="item2.cover"
 																	mode="widthFix" class="single-image"
-																	@tap="previewImage(tolist(item2.articleImg),0)">
+																	@tap="previewImage(item2.articleImg)">
 																</image>
 															</view>
 															<!-- 两张或三图片 -->
-															<view v-if="tolist(item2.articleImg).length>1"
-																style="width: 100%;">
-																<view class="image-grid">
-																	<image
-																		v-for="(imageUrl, index) in tolist(item2.articleImg)"
-																		:src="imageUrl" :key="index" mode="aspectFill"
-																		:class="{'two-images': tolist(item2.articleImg).length === 2, 'grid-image': tolist(item2.articleImg).length === 3}"
-																		@tap="previewImage(tolist(item2.articleImg),index)" />
-																</view>
-															</view>
+															
 														</view>
 													</view>
 												</view>
@@ -582,25 +584,14 @@
 														</view>
 														<view class="post-images" @click.stop="to_bigImage">
 															<!-- 单张图片 -->
-															<view
-																v-if="tolist(item2.articleImg).length==1&&item2.articleImg!=''"
-																style="width: 75%;">
-																<image :src="tolist(item2.articleImg)[0]"
+															<view style="width: 75%;">
+																<image :src="item2.cover"
 																	mode="widthFix" class="single-image"
-																	@tap="previewImage(tolist(item2.articleImg),0)">
+																	@tap="previewImage(item2.articleImg)">
 																</image>
 															</view>
 															<!-- 两张或三图片 -->
-															<view v-if="tolist(item2.articleImg).length>1"
-																style="width: 100%;">
-																<view class="image-grid">
-																	<image
-																		v-for="(imageUrl, index) in tolist(item2.articleImg)"
-																		:src="imageUrl" :key="index" mode="aspectFill"
-																		:class="{'two-images': tolist(item2.articleImg).length === 2, 'grid-image': tolist(item2.articleImg).length === 3}"
-																		@tap="previewImage(tolist(item2.articleImg),index)" />
-																</view>
-															</view>
+															
 														</view>
 													</view>
 												</view>
@@ -746,11 +737,13 @@
 				],
 				//悬浮按钮属性
 				pattern: {
-					icon: 'arrow-down',
+					icon: 'compose',
 					color: '#4095E5',
 					backgroundColor: '#4095E5',
 					iconColor: '#fff'
 				},
+				videoSrc:"",
+				isVideo:false,
 				horizontal: "right",
 				// 用户信息
 				level: '入门一阶',
@@ -824,10 +817,10 @@
 			this.scrollTop = e.scrollTop
 			if (e.scrollTop > 140) {
 				_this.can_Yslip = false
-				_this.pattern.icon = "arrow-up"
+				
 			} else if(e.scrollTop<140) {
 				_this.can_Yslip = true
-				this.pattern.icon = "arrow-down"
+				
 			}
 		},
 		computed: {
@@ -1058,12 +1051,14 @@
 
 
 			},
-			previewImage(url, index) {
+			previewImage(url) {
 				console.log(url);
-				uni.previewImage({
-					urls: url,
-					current: url[index],
-				})
+				this.videoSrc = url
+				this.isVideo = true
+			},
+			small_video(){
+				this.videoSrc = null
+				this.isVideo = false
 			},
 			closeImage() {
 				this.showLargeImage = false; // 关闭大图显示
@@ -1265,9 +1260,16 @@
 				this.can_Yslip=true
 				
 			},
+			//发帖
+			fatie(){
+				console.log("去发帖");
+				uni.navigateTo({
+					url:('/pages/write_tiezi/write_tiezi')
+				})
+			},
 			loadmore(index) {
 				// 把悬浮按钮转换为向上
-				this.pattern.icon = "arrow-up"
+				
 				// 拿到当前列表
 
 				let item = this.articleList[index];
@@ -1347,21 +1349,7 @@
 			to_bigImage() {
 				console.log("图片变大");
 			},
-			xuanfu() {
-				if (this.pattern.icon == "arrow-down") {
-					uni.pageScrollTo({
-						scrollTop: 270,
-						duration: 50
-					})
-
-				} else {
-					uni.pageScrollTo({
-						scrollTop: 0,
-						duration: 50
-					})
-
-				}
-			}
+			
 		}
 	};
 </script>

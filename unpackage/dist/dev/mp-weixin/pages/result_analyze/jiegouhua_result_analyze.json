@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "popGesture": "none",
+  "usingComponents": {
+    "uni-collapse": "/uni_modules/uni-collapse/components/uni-collapse/uni-collapse",
+    "uni-collapse-item": "/uni_modules/uni-collapse/components/uni-collapse-item/uni-collapse-item",
+    "t-l-audio": "/components/TL-audio/TL-audio",
+    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-group": "/uni_modules/uni-group/components/uni-group/uni-group"
+  }
+}

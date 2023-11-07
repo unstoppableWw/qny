@@ -1,7 +1,12 @@
 <template>
 	<view id="app" >
 		
-		
+		<view  v-if="isVideo">
+			<video :src="videoSrc" show-center-play-btn="true" autoplay="true"  style="position: fixed;width: 100%;height: 100%;z-index: 9999;" @click="small_video"
+		      >
+				
+			</video>
+		</view>
 		<!-- <image src="../../static/tom.jpg" style="width:100%;height: 500rpx;position: absolute;filter: blur(50px);" ></image> -->
 		<view class="bg" >
 			
@@ -89,98 +94,7 @@
 					 disable-touch="true"
 			       >
 				   
-				   <swiper-item>
 				   
-				   	<!-- 个人资料区域 -->
-				   	<view class="info_container">
-				   		<view class="info_view" style="margin-top: 2%;"  >
-				   			<!-- 六种等级可能性 -->
-				   			<view style="width: 76%;" class="flex flex-row justify-start align-center"
-				   				v-if="level_i==0">
-				   				<view style="font-weight: bold;font-size: 40rpx;margin-left: 1%;color: black;">{{level}}
-				   				</view>
-				   			</view>
-				   			<view style="width: 76%;" class="flex flex-row justify-start align-center"
-				   				v-if="level_i==1">
-				   				<image src="../../static/level/11.png"
-				   					style="width:100rpx;height: 100rpx;opacity: 1;padding: 10rpx;"
-				   					@click="open_xunzhang"></image>
-				   				<view style="font-weight: bold;font-size: 30rpx;margin-left: 1%; color: #835E3A;">
-				   					{{level}}
-				   				</view>
-				   			</view>
-				   			<view style="width: 76%;" class="flex flex-row justify-start align-center"
-				   				v-if="level_i==2">
-				   				<image src="../../static/level/22.png"
-				   					style="width:100rpx;height: 100rpx;opacity: 1;padding: 10rpx;"
-				   					@click="open_xunzhang"></image>
-				   				<view style="font-weight: bold;font-size: 30rpx;margin-left: 1%; color: #97ADC7;">
-				   					{{level}}
-				   				</view>
-				   			</view>
-				   			<view style="width: 76%;" class="flex flex-row justify-start align-center"
-				   				v-if="level_i==3">
-				   				<image src="../../static/level/33.png"
-				   					style="width:100rpx;height: 100rpx;opacity: 1;padding: 10rpx;"
-				   					@click="open_xunzhang"></image>
-				   				<view style="font-weight: bold;font-size: 30rpx;margin-left: 1%;color: #75E4EC;">
-				   					{{level}}
-				   				</view>
-				   			</view>
-				   			<view style="width: 76%;" class="flex flex-row justify-start align-center"
-				   				v-if="level_i==4">
-				   				<image src="../../static/level/44.png"
-				   					style="width:100rpx;height: 100rpx;opacity: 1;padding: 10rpx;"
-				   					@click="open_xunzhang"></image>
-				   				<view style="font-weight: bold;font-size: 30rpx;margin-left: 1%;color: #FCDA21;;">
-				   					{{level}}
-				   				</view>
-				   			</view>
-				   			<view style="width: 76%;" class="flex flex-row justify-start align-center"
-				   				v-if="level_i==5">
-				   				<image src="../../static/level/55.png"
-				   					style="width:100rpx;height: 100rpx;opacity: 1;padding: 10rpx;"
-				   					@click="open_xunzhang"></image>
-				   				<view style="font-weight: bold;font-size: 30rpx;margin-left: 1%;color: #F7931E;;">
-				   					{{level}}
-				   				</view>
-				   			</view>
-				   			
-				   		</view>
-						
-				   		<view class="info_view" style="flex-wrap: wrap;justify-content: start;"  v-if="canRead_1==true">
-				   			<view v-for="(item, index) in base_info" :key="index"
-				   				style="display: flex;width: 45%;margin-left: 5%;margin-top: 3%;">
-				   				<view style="color: grey;font-size: 30rpx;">{{ item.title }}</view>
-				   				<view style="margin-left: 4%;font-size: 30rpx;">{{ item.content }}</view>
-				   			</view>
-				   		</view>
-				   		
-						<view v-else class="flex justify-center align-center" style="font-size: 30rpx;opacity: 0.5;">
-							ta的个人资料被隐藏咯~
-						</view>
-				   		<view class="info_view">
-				   			<view style="font-weight: bold;font-size: large;margin-left: 2%;margin-top: 3%;">定位</view>
-				   		</view>
-				   		<view class="info_view" style="flex-wrap: wrap;justify-content: start;" v-if="canRead_2==true">
-				   			<view v-for="(item, index) in skill_info" :key="index"
-				   				style="display: flex;width: auto;margin-left: 5%;margin-top: 3%;">
-				   				<view style="color: gray;font-size: 30rpx;" class="flex justify-center align-center">
-				   					{{ item.title }}
-				   				</view>
-				   				<view style="display: flex">
-				   					<span v-for="(label, labelIndex) in item.labels" :key="labelIndex"
-				   						class="flex justify-center align-center"
-				   						style="margin-left: 18rpx;font-size: 25rpx;background-color: #F8F8F8;padding: 10rpx;border-radius: 10rpx;color: #4F4F4F;">{{ label }}</span>
-				   				</view>
-				   			</view>
-				   		</view>
-				   		<view v-else class="flex justify-center align-center" style="font-size: 30rpx;opacity: 0.5;">
-				   			ta的面试定位被隐藏咯~
-				   		</view>
-				   	</view>
-					
-				   </swiper-item>
 				   
 			         <swiper-item v-for="(item, index) in articleList" :key="index" ref="swiperItems" style="background-color: white;">
 			           <view v-if="canRead_3==false&&index==0" class="flex justify-center align-center" style="font-size: 30rpx;opacity: 0.5;">
@@ -224,15 +138,14 @@
 			   								</view>
 			   							<view class="post-images" @click.stop="to_bigImage">
 			   								<!-- 单张图片 -->
-			   							   <view v-if="tolist(item2.articleImg).length==1&&item2.articleImg!=''" style="width: 75%;">
-			   							        <image :src="tolist(item2.articleImg)[0]" mode="widthFix" class="single-image" @tap="previewImage(tolist(item2.articleImg),0)"></image>
-			   							    </view>
+			   								<view style="width: 75%;">
+			   									<image :src="item2.cover"
+			   										mode="widthFix" class="single-image"
+			   										@tap="previewImage(item2.articleImg)">
+			   									</image>
+			   								</view>
 			   								<!-- 两张或三图片 -->
-			   								<view v-if="tolist(item2.articleImg).length>1" style="width: 100%;">
-			   								     <view class="image-grid">
-			   										 <image v-for="(imageUrl, index) in tolist(item2.articleImg)" :src="imageUrl" :key="index" mode="aspectFill" :class="{'two-images': tolist(item2.articleImg).length === 2, 'grid-image': tolist(item2.articleImg).length === 3}" @tap="previewImage(tolist(item2.articleImg),index)" />
-			   								     </view>
-			   								 </view>
+			   								
 			   							</view>
 			   					</view>
 			   				</view>
@@ -325,15 +238,14 @@
 					   						</view>
 					   					<view class="post-images" @click.stop="to_bigImage">
 					   						<!-- 单张图片 -->
-					   					   <view v-if="tolist(item2.articleImg).length==1&&item2.articleImg!=''" style="width: 75%;">
-					   					        <image :src="tolist(item2.articleImg)[0]" mode="widthFix" class="single-image" @tap="previewImage(tolist(item2.articleImg),0)"></image>
-					   					    </view>
+					   						<view style="width: 75%;">
+					   							<image :src="item2.cover"
+					   								mode="widthFix" class="single-image"
+					   								@tap="previewImage(item2.articleImg)">
+					   							</image>
+					   						</view>
 					   						<!-- 两张或三图片 -->
-					   						<view v-if="tolist(item2.articleImg).length>1" style="width: 100%;">
-					   						     <view class="image-grid">
-					   								 <image v-for="(imageUrl, index) in tolist(item2.articleImg)" :src="imageUrl" :key="index" mode="aspectFill" :class="{'two-images': tolist(item2.articleImg).length === 2, 'grid-image': tolist(item2.articleImg).length === 3}" @tap="previewImage(tolist(item2.articleImg),index)" />
-					   						     </view>
-					   						 </view>
+					   						
 					   					</view>
 					   			</view>
 					   		</view>
@@ -465,13 +377,15 @@ export default {
 		  scrollH: 650,
 		  tabIndex: 0,
 		  tabBars: [
-			{id: 0,classname: '资料'},
-		    { id: 1, classname: 'ta的帖子' },
-		    { id: 2, classname: 'ta的收藏' },
+			
+		    { id: 0, classname: 'ta的帖子' },
+		    { id: 1, classname: 'ta的收藏' },
 		    // 在这里添加其他 TabBar 的选项
 		  ],
 		  hisId:0,
 		  scrollTop:0,
+		  videoSrc:"",
+		  isVideo:false,
 		  // 帖子信息列表
 		   articleList: [
 			    // 我的帖子数据示例
@@ -1029,6 +943,15 @@ export default {
 		}
 
 	   
+	  },
+	  previewImage(url) {
+	  	console.log(url);
+	  	this.videoSrc = url
+	  	this.isVideo = true
+	  },
+	  small_video(){
+	  	this.videoSrc = null
+	  	this.isVideo = false
 	  },
 	  to_bigImage(){
 	  	console.log("图片变大");

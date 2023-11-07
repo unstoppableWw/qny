@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "t-l-audio": "/components/TL-audio/TL-audio"
+  }
+}

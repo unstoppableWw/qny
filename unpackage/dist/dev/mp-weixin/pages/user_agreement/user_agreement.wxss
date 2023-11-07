@@ -1,0 +1,35 @@
+
+.user-agreement.data-v-e7e45bf4 {
+
+  position: absolute;
+  width: 95%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  
+  margin-left: 20rpx;
+}
+._h2.data-v-e7e45bf4 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.scrollable-content.data-v-e7e45bf4 {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.section.data-v-e7e45bf4 {
+  margin-bottom: 30px;
+}
+._h3.data-v-e7e45bf4 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+._ul.data-v-e7e45bf4 {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+._li.data-v-e7e45bf4 {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+

@@ -1,0 +1,37 @@
+
+.popup_select{
+			display: flex;
+			justify-content: space-evenly;
+			height: 15%;
+			width: 100%;
+			
+			align-items: center;
+}
+.popup_button_selected{
+			display: flex;
+			background-color: #4095E5;
+			border-radius: 10rpx;
+			width: 145rpx;
+			height: 75rpx;
+			margin: 30rpx;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			margin: 10rpx;
+			margin-right: 20rpx;
+			color: white;
+}
+.popup_button_unselect{
+			display: flex;
+			border-radius: 10rpx;
+			width: 145rpx;
+			height: 75rpx;
+			margin: 30rpx;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			margin: 10rpx;
+			margin-right: 20rpx;
+			border: 0.5rpx solid black;
+}
+

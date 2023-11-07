@@ -1,0 +1,38 @@
+
+.bianji_denglu {
+	display: flex;
+	background-color: #4095e5;
+	border-radius: 40rpx;
+	width: 600rpx;
+	height: 110rpx;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.selected-tag {
+	background-color: #4095E5;
+	color: white;
+	display: inline-block;
+	margin-left: 3%;
+	margin-top: 3%;
+	padding: 5rpx 10rpx;
+	border-radius: 10rpx;
+}
+.unselected-tag {
+	background-color: #F8F8F8;
+	color: #4F4F4F;
+	display: inline-block;
+	margin-left: 3%;
+	margin-top: 3%;
+	padding: 5rpx 10rpx;
+	border-radius: 10rpx;
+}
+.select_view {
+	padding-left: 5%;
+	width: 90%;
+	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+

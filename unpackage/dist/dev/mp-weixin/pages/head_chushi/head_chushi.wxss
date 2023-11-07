@@ -1,0 +1,20 @@
+
+.head_bg{
+	
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	 position: absolute;
+	 display: flex;
+}
+.head_button{
+	width: 85rpx;
+	height: 85rpx;
+	padding-right: 1rpx;
+	padding-left: 5rpx;
+	border-radius: 100%;
+	margin-top: 50rpx;
+	border: #4095E5;
+}
+

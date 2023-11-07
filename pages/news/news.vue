@@ -352,25 +352,7 @@ created() {
 	this.$H.post('/forum',bodyData)
 	   .then(response => {
 		console.log(response)
-		// 请求成功时更新dataItems
-		// this.newsList[0].list = response.data.data.learnArticle.records.map(post => {
-		//   if (post.articleImg!='') {
-		//     // 将帖子中的articleImg字符串转换为数组
-		//      post.img_arr = post.articleImg.replace(/\[|\]|\s/g, '').split(',').map(url => url.trim()); // 假设图片数组是用逗号分隔的
-		//   } else {
-		//     post.img_arr = []; // 或者你可以选择设置一个默认的空数组
-		//   }
-		//   return post;
-		// });
-		// this.newsList[1].list = response.data.data.chatArticle.records.map(post => {
-		//   if (post.articleImg!='') {
-		//     // 将帖子中的articleImg字符串转换为数组
-		//      post.img_arr = post.articleImg.replace(/\[|\]|\s/g, '').split(',').map(url => url.trim()); // 假设图片数组是用逗号分隔的
-		//   } else {
-		//     post.img_arr = []; // 或者你可以选择设置一个默认的空数组
-		//   }
-		//   return post;
-		// });
+		
 		
 		this.newsList[0].list = response.data.data.learnArticle.records
 		this.newsList[1].list = response.data.data.chatArticle.records

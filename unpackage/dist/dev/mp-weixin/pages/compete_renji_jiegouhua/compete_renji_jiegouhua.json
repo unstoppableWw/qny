@@ -1,0 +1,18 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup",
+    "uni-popup-message": "/uni_modules/uni-popup/components/uni-popup-message/uni-popup-message",
+    "uni-steps": "/uni_modules/uni-steps/components/uni-steps/uni-steps",
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
+    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-group": "/uni_modules/uni-group/components/uni-group/uni-group",
+    "uni-nav-bar": "/components/uni-ui/uni-nav-bar/uni-nav-bar",
+    "common-list": "/components/common/common-list",
+    "load-more": "/components/common/load-more",
+    "train-chat-message": "/components/common/TrainChatMessage",
+    "no-thing": "/components/common/no-thing"
+  }
+}

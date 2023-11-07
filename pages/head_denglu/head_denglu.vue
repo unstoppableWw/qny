@@ -2,7 +2,7 @@
 	<view class="head_bg">
 		<view class="flex flex-column align-center justify-center" style="height: 25%;">
 			<view style="font-size: 50rpx;font-weight: 700;">欢迎您</view>
-			<view style="font-size: 50rpx;font-weight: 700;">未来橘长</view>
+			<view style="font-size: 50rpx;font-weight: 700;"></view>
 		</view>
 		<view class="chushi_shuru">
 			<image class="small_icon" src="../../static/head/shoujihaoma.svg"></image>

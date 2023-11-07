@@ -1,0 +1,60 @@
+
+.bg{
+	background-image: url(/static/compete_bg2.png);
+	background-size:cover ;
+}
+.pipei_top{
+	width: 100%;
+	height: 15%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.pipei_middle{
+	width: 100%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.pipei_bottom{
+	width: 100%;
+	height: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.chushi_denglu{
+	display: flex;
+	background-color: #F4CE98;
+	border-radius: 40rpx;
+	width: 200rpx;
+	height: 90rpx;
+	
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.swiper-item-index{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 300rpx;
+		width: 500rpx;
+}
+.custom-button {
+  width: 230rpx;
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+ background-color: #4095E5;
+ color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 35rpx; /* Adjust font size for smaller button text */
+}
+

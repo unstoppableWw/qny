@@ -1,7 +1,7 @@
 <template>
   <view class="container_box" id="video_box">
 			<view class="uni-padding-wrap uni-common-mt" style="opacity: 0.8;font-weight: 800">
-				<uni-segmented-control :current="unicurrent" :values="items" style-type="text"
+				<uni-segmented-control :current="unicurrent" :values="type_items" style-type="text"
 					:active-color="activeColor" @clickItem="onClickItem" />
 			</view>
 
@@ -13,6 +13,7 @@
         vertical
         :loop="false"
 		style="width: 100%;height: 100%;"
+		:current="current"
       >
         <swiper-item
           v-for="(item, index) in videoList"
@@ -42,7 +43,7 @@
 
             ></video>
             <!-- 封面 -->
-            <img
+            <image
               v-show="isVideoShow"
               class="play"
               @click="playvideo"
@@ -59,25 +60,31 @@
           <!-- 右侧点赞、分享功能 -->
           <view class="tools_right">
 			<view>
-				<image :src="selfImage" style=" width: 85rpx;height: 85rpx; border-radius: 100%;  "lazy-load @click="to_hisPage"></image>
+				<image :src="item.userImg" style=" width: 85rpx;height: 85rpx; border-radius: 100%;  "lazy-load @click="to_hisPage(item.userId)"></image>
 				
 				
 			</view>
-            <view class="tools_r_li" @click="changeFollow(item, index)">
-				<uni-icons v-if="item.follow" type="heart" size="30" color="white" class="animation_1"></uni-icons>
+            <view class="tools_r_li" @click="dianzan(item, index)" style="opacity: 0.8;">
+				<uni-icons v-if="!item.follow" type="heart" size="30" color="white" class="animation_1"></uni-icons>
 				<uni-icons v-else type="heart-filled" size="30" color="orangered" class="animation_1"></uni-icons>
               
-              <view class="tools_r_num">{{item.loveCount}}w</view>
+              <view class="tools_r_num">{{item.loveCount}}</view>
             </view>
+			<view class="tools_r_li" @click="shoucang(item, index)" style="opacity: 0.8;">
+				<uni-icons v-if="!item.save" type="star" size="30" color="white" class="animation_1"></uni-icons>
+				<uni-icons v-else type="star-filled" size="30" color="yellow" class="animation_1"></uni-icons>
+			  
+			  <view class="tools_r_num">{{item.saveCount}}</view>
+			</view>
 			<!-- 评论 -->
 			<view class="tools_r_li" >
-				<uni-icons  type="chat" size="30" color="white" class="animation_1"></uni-icons>
+				<uni-icons  type="chat" size="30" color="white" class="animation_1" @click="open_pinglun"></uni-icons>
 			  <view class="tools_r_num">1111</view>
 			</view>
 			<!-- 分享 -->
             <view class="tools_r_li" @click="changeShare">
               <uni-icons  type="redo" size="30" color="white" class="animation_1"></uni-icons>
-              <view class="tools_r_num">{{item.shareCount}}w</view>
+              <view class="tools_r_num">{{item.shareCount}}</view>
             </view>
           </view>
           <!-- 底部作品描述 -->
@@ -85,12 +92,10 @@
             <view class="production_name">@{{item.name}}</view>
             <view class="production_des">
               <i
-                v-for="(list, index) in item.buyShopList" 
-                :key="index" 
-                class="production_des_i"
-                @click="copyShopName(list.ShopUrl)"
+                
+               
               >
-                {{list.ShopName}}
+                {{item.content}}
               </i>
             </view>
           </view>
@@ -136,7 +141,7 @@
 		<uni-popup ref="yaoqing"  >
 			<view style="width: 100%;height: 800rpx; border-top-right-radius: 40rpx;border-top-left-radius: 40rpx;background-color:#fff;display: flex;flex-direction: column;align-items: center">
 				<view style="width: 100%;height: 20%;font-size: 30rpx;" class="flex flex-row justify-center align-center">
-					邀请好友练习
+					分享视频
 				</view>
 				<!-- 上面显示用户 -->
 				<view style="width: 100%;height: 25%;">
@@ -203,20 +208,83 @@
 			</view>
 		</uni-popup>
 	</view>
+	<!-- 评论弹窗 -->
+	<view>
+		<uni-popup ref="pinglun"  >
+			<view style="width: 100%;height: 1000rpx; border-top-right-radius: 40rpx;border-top-left-radius: 40rpx;background-color:#fff;display: flex;flex-direction: column;align-items: center">
+				<view style="width: 100%;height: 10%;font-size: 30rpx;" class="flex flex-row justify-center align-center">
+					评论
+				</view>
+				<!-- 上面显示用户 -->
+				<view style="width: 100%;height: 70%;">
+					<scroll-view scroll-y="true" show-scrollbar="true" style="height: 700rpx;">
+						<view class="comment-item-main" v-for="(item, index) in comments" :key="item.id" :id="index">
+							<view class="comment-item">
+								<view class="left" style="margin-top: 10rpx;margin-left: 20rpx;">
+									<image :src="item.userImg"
+										style="width: 75rpx;height: 75rpx; margin-right: 5%; border-radius: 50%;"
+										mode="aspectFill" @click="toHis(item.userId)"></image>
+								</view>
+								<view class="content">
+									<view class="title-name" style="display: flex;flex-direction: row">
+										<view style="margin-right: auto;color: darkgrey">{{ item.userName }}</view>
+										
+									</view>
+									<view class="content-text"
+										@click="replyComment(item.userName, item.userId, 2, index,item)">
+										<view>
+						
+											<text v-if="item.replyUserId!==null"
+												style="font-size: 30rpx;color: #4095E5;">回复{{item.replyName }}:</text>
+						
+											<text v-if="item.replyUserId!==null"
+												style="font-size: 30rpx;">{{ item.content }}</text>
+											<text v-else style="font-size: 30rpx;">{{ item.content }}</text>
+										</view>
+						
+									</view>
+						
+								</view>
+						
+							</view>
+							<view style="height: 1px;width: 80%;margin-left: 17%; background-color:#FFFAFA; margin-top: 20rpx;margin-bottom: 20rpx;">
+							</view>
+						</view>
+					</scroll-view>
+					
+				</view>
+				<!-- 下面显示链接 -->
+				<view  style="width: 100%;height: 20%;">
+					<view class="comment-btm" >
+						
+						<input class="shuru"  v-model="newComment" :adjust-position="false" type="text" :placeholder="placeholderComment1" :focus="iptFocus"
+							@input="input" @confirm="sendPersonalComment" />
+						<view class="send-button" @click="sendMessage">发送</view>
+					
+					</view>
+				</view>
+				
+			</view>
+		</uni-popup>
+	</view>
   </view>
   <!-- 邀请弹窗-->
   
 </template>
 <script>
 
-import '../../static/iconfont/iconfont.css'
+import '../../static/iconfont/iconfont.css';
+import $store from '@/store/mian_store.js';
+import webSocketClass from '@/webSocket/webSocket.js';
+const app = getApp()
 
 export default {
   name: "videoChild",
   data() {
     let u = navigator.userAgent;
     return {
-		items: ['推荐', '新闻', '娱乐','其他'],
+		type_items: ['推荐', '新闻', '娱乐','其他'],
+		fenlei_type:0,
 		activeColor: 'white',
 		styleType: 'text',
 		unicurrent: 0,
@@ -225,25 +293,12 @@ export default {
       videoList: [
         {
           url: "https://video.pearvideo.com/mp4/third/20201113/cont-1706821-15126082-111655-hd.mp4",
-          cover: "https://image-cn2.tvcbook.com/v7/image/2020/11/13/8a7b666e-0ac8-4e34-b549-8360b1569e54.png!cover-780-439?x-oss-process=image/crop,x_0,y_72,w_1080,h_608,g_nw",
+          cover: "",
           follow: false,
           loveCount: 24,
           shareCount: 12,
           name: '智.混动',
-          buyShopList: [
-            {
-              ShopName: '淘宝',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '天猫',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '京东',
-              ShopUrl: 'http://taobao.com'
-            }
-          ]
+          content: "我爱小天！！！！！！！！！！！！！！"
         },
         {
           url: "https://video.pearvideo.com/mp4/third/20201114/cont-1707004-15488237-105621-hd.mp4",
@@ -252,20 +307,7 @@ export default {
           loveCount: 28,
           shareCount: 2,
           name: '用jio看世界，发现更多乐趣',
-          buyShopList: [
-            {
-              ShopName: '淘宝',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '天猫',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '拼多多',
-              ShopUrl: 'http://taobao.com'
-            }
-          ]
+          content: "我爱小飞！！！！！！！！！！！！！！"
         },
         {
           url: "https://video.pearvideo.com/mp4/third/20201117/cont-1707360-15126082-105138-hd.mp4",
@@ -274,20 +316,7 @@ export default {
           loveCount: 48,
           shareCount: 23,
           name: '三维',
-          buyShopList: [
-            {
-              ShopName: '淘宝',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '天猫',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '苏宁',
-              ShopUrl: 'http://taobao.com'
-            }
-          ]
+          content: "我爱极为！！！！！！！！！！！！！！"
         },
 
         {
@@ -297,20 +326,7 @@ export default {
           loveCount: 68,
           shareCount: 29,
           name: '世界关节炎日 MoveFree奶奶的约定',
-          buyShopList: [
-            {
-              ShopName: '淘宝',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '天猫',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '苏宁',
-              ShopUrl: 'http://taobao.com'
-            }
-          ]
+         content: "我爱小yinch！！！！！！！！！！！！！！"
         },
         {
           url: "https://video.pearvideo.com/mp4/third/20201124/cont-1708555-15126082-104309-hd.mp4",
@@ -319,16 +335,7 @@ export default {
           loveCount: 168,
           shareCount: 129,
           name: '黑无节，是他们的限定狂欢日',
-          buyShopList: [
-            {
-              ShopName: '淘宝',
-              ShopUrl: 'http://taobao.com'
-            },
-            {
-              ShopName: '天猫',
-              ShopUrl: 'http://taobao.com'
-            }
-          ]
+          content: "我爱桂锦！！！！！！！！！！！！！！"
         },
         {
           url: "https://video.pearvideo.com/mp4/third/20201124/cont-1708555-15126082-104309-hd.mp4",
@@ -337,12 +344,7 @@ export default {
           loveCount: 18,
           shareCount: 1,
           name: '懂咖啡，也懂你的小心思',
-          buyShopList: [
-            {
-              ShopName: '淘宝',
-              ShopUrl: 'http://taobao.com'
-            }
-          ]
+          content: "我爱偶洋！！！！！！！！！！！！！！"
         }
       ],
 
@@ -366,18 +368,75 @@ export default {
 	  sessionId:0,
 	  toId:0,
 	  is_dianji:true,
+	  //评论
+	  comments:[],
+	  newComment: '', // 用户输入的评论内容
+	  isReplying: false, // 是否正在回复
+	  replyToUser: '', // 被回复的用户名
+	  replyToCommentId: null, // 被回复的评论ID
+	  isCollected: false, // 是否已收藏
+	  isLiked: false, // 是否已点赞
+	  MyId:0,
+	  MyImg :"",
+	  MyName:"",
     };
   },
+  
+  onLoad(){
+	  
+	  // 初始化globalWebsocket
+	  let store_token
+	  if($store.state.token){
+	  	store_token = $store.state.token
+	  }else {
+	  	store_token =  uni.getStorageSync('token');
+	  }
+	  if (store_token) {
+	  	const name = 'globalWebsocket'
+	  	const url = `${this.$C.webUrl_vuex}/ws?token=${store_token}`
+	  	const time = 30
+	  	app.globalData.socketObj = new webSocketClass(name, url, time)
+	  	app.globalData.socketObj.initSocket()
+	  }
+	  
+	  
+	  var bodyData = {
+	  	"type":1,
+	  	"page":1
+	  }
+  	this.refresh_news(bodyData)
+	this.$H.post("/user/my").then(res=>{
+				console.log(res);
+			  this.MyId = res.data.data.userId
+			  this.MyImg =  res.data.data.userImg
+			  this.MyName =  res.data.data.userName
+			  
+			  
+	})
+  },
+  
   methods: {
 
-
-  onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.name}`,
-      icon: 'none',
-    });
-  },
-Nike_yes(index){
+	refresh_news(bodyData){
+			
+			this.$H.post('/forum',bodyData)
+			   .then(response => {
+				console.log(response)
+				let data = response.data.data.data
+				this.videoList = []
+				for(let i = 0;i<data.length;i++){
+					console.log(data[i]);
+					this.videoList.push(data[i])
+				}
+				console.log(this.videoList);
+				
+				
+				
+			  })
+			  
+	},
+  
+			Nike_yes(index){
 				for(let i=0;i<this.yaoqingList.length;i++){
 					this.yaoqingList[i].isNike=false
 				}
@@ -390,9 +449,22 @@ Nike_yes(index){
 				this.yaoqingList[index].isNike=false
 				this.is_dianji = true
 			},
-		to_hisPage(){
-			uni.navigateTo({
-				url:"/pages/his_page/his_page"
+		to_hisPage(userId){
+			this.$H.post("/user/my").then(res=>{
+						console.log(res);
+					  let myId = res.data.data.userId
+					  console.log("去他的页面咯");
+					  console.log(userId)
+					  console.log(myId);
+					  if(userId==myId){
+					  	uni.switchTab({
+					  		url:'/pages/my/my'
+					  	})
+					  }else{
+					  	uni.navigateTo({
+					  	  url: `../his_page/his_page?userId=${userId}`
+					  	});
+					  }
 			})
 		},
 
@@ -404,9 +476,46 @@ Nike_yes(index){
       }
     },
     //改变收藏状态
-    changeFollow(item, index) {
-      this.videoList[index].follow = !this.videoList[index].follow;
-    },
+    
+	dianzan(item,index){
+		var bodyData = {
+			"articleId":this.videoList[this.current].articleId
+		}
+		if(this.videoList[index].follow==false){
+			this.$H.post('/article/like.do',bodyData)
+			   .then(response => {  
+				   this.videoList[index].loveCount++
+				   
+			   })
+			   
+		}
+		else{
+			this.$H.post('/article/cancle_like.do',bodyData)
+			   .then(response => {  
+				   this.videoList[index].loveCount--
+			   })
+			   
+		}
+		this.videoList[index].follow = !this.videoList[index].follow;
+	},
+	shoucang(item,index){
+		var bodyData = {
+			"articleId":this.videoList[this.current].articleId
+		}
+		if(this.videoList[index].save==0){
+			this.$H.post('/article/save.do',bodyData)
+			   .then(response => {  
+			   })
+			   this.videoList[index].saveCount++
+		}
+		else{
+			this.$H.post('/article/cancle_save.do',bodyData)
+			   .then(response => {  
+			   })
+			   this.videoList[index].saveCount--
+		}
+		this.videoList[index].save = !this.videoList[index].save;
+	},
     //展示分享弹窗
     changeShare() {
       this.$refs.yaoqing.open("bottom")
@@ -415,9 +524,17 @@ Nike_yes(index){
     cancelShare() {
       this.showShareBox = false;
     },
+	replyComment(userNickName, id, tier, index, reply) {
+		this.iptFocus = true;
+		this.placeholderComment = '回复' + userNickName + ": ";
+		this.replyToUser = userNickName;
+		this.replyToCommentId = id;
+		this.isReplying = true;
+	},
     //滑动改变播放的视频
 
     onChange(item) {
+		console.log(item);
       //改变的时候 暂停当前播放的视频
       let video = document.querySelectorAll("video")[this.current];
       video.pause();
@@ -426,10 +543,12 @@ Nike_yes(index){
       this.current=item.detail.current;
 	  
       if (this.isiOS) {
+      	console.log("这是ios");
         //ios切换直接自动播放下一个
         this.isVideoShow = false;
         this.pauseVideo();
       } else {
+      	console.log("这是android");
         //安卓播放时重置显示封面。图标等
         this.isVideoShow = true;
         this.iconPlayShow = true;
@@ -486,11 +605,126 @@ Nike_yes(index){
     copyShopName(ShopUrl) {
       Toast('复制成功')
     },
+	open_pinglun(){
+		
+		this.$H.post('/article', {
+			"articleId": this.videoList[this.current].articleId,
+			"type": this.fenlei_type
+		}).then(response => {
+				console.log(response)
+		
+				
+					
+					this.comments = response.data.data.commentList.records
+					console.log(this.comments);
+			})
+		this.$refs.pinglun.open("bottom")
+		
+	},
 	onClickItem(e) {
-		if (this.current !== e.currentIndex) {
-			this.current = e.currentIndex
+		var bodyData
+		let video = document.querySelectorAll("video")[this.current];
+		video.pause();
+		this.playOrPause = false;
+		console.log(e);
+		this.fenlei_type = e.currentIndex
+		
+		if(e.currentIndex==0){
+			 bodyData = {
+			  	"type":1,
+			  	"page":1
+			  }
+			this.refresh_news(bodyData)
+			
+		}else if(e.currentIndex==1){
+			 bodyData = {
+			  	"type":2,
+			  	"page":1
+			  }
+			this.refresh_news(bodyData)
+		}else if(e.currentIndex==2){
+			 bodyData = {
+			  	"type":3,
+			  	"page":1
+			  }
+			this.refresh_news(bodyData)
+		}else if(e.currentIndex==3){
+			 bodyData = {
+			  	"type":4,
+			  	"page":1
+			  }
+			this.refresh_news(bodyData)
+		}
+		
+		//改变的时候 暂停当前播放的视频
+		setTimeout(()=>{
+			this.playOrPause = false;
+			
+			this.current=0;
+			video = document.querySelectorAll("video")[this.current];
+			if (this.isiOS) {
+				console.log("这是ios");
+			  //ios切换直接自动播放下一个
+			  this.isVideoShow = false;
+			  this.pauseVideo();
+			} else {
+				console.log("这是android");
+			  //安卓播放时重置显示封面。图标等
+			  this.isVideoShow = true;
+			  this.iconPlayShow = true;
+			}
+		},1000)
+		
+	},
+	sendMessage(){
+		if(this.isReplying==true){
+			this.sendReply()
+		}
+		else{
+			this.sendPersonalComment()
 		}
 	},
+	// 发送个人评论
+	sendPersonalComment() {
+		if (this.newComment.trim() === '') {
+			alert('输入内容不能为空');
+			return;
+		}
+		var bodyData = {
+			"info_id": this.videoList[this.current].articleId,
+			"content": this.newComment,
+			"reply_user_id": '',
+		}
+		this.$H.post('/article/insert_comment.do', bodyData)
+			.then(response => {
+				console.log(response)
+			})
+		// 创建个人评论对象，并添加到 comments 数组
+	
+	
+	
+		const newCommentObj = {
+			id: null,
+			userImg: this.MyImg,
+			userName: this.MyName,
+			content: this.newComment,
+			createTime: new Date(),
+			replyUserId: null
+		};
+		console.log(newCommentObj)
+		this.comments.unshift(newCommentObj);
+	
+		// 清空用户输入
+		this.newComment = '';
+	},
+	yaoqing_send(){
+		this.$refs.yaoqing.close()
+		uni.showToast({
+			title:"分享成功",
+			icon:"success",
+			duration:2000
+		})
+	}
 	}
 };
 </script>
@@ -657,6 +891,7 @@ video {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-top: -30rpx;
 }
 .product_go {
   color: #fbdd21;
@@ -780,5 +1015,156 @@ video {
 		 
 		 border: #C3D5F0 solid 4rpx;
 		
+	}
+	.comment-btm {
+	
+			
+			width: 100%;
+			height: 100rpx;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			/* position: absolute; */
+			position: fixed;
+			
+			background-color: #fff;
+			border-top: 1rpx solid #FFFAFA;
+	
+			
+	
+			
+		}
+	.shuru {
+				height: 50rpx;
+				width: 500rpx;
+				border-radius: 40rpx;
+				background-color: #F9FAFC;
+				font-size: 30rpx;
+				margin-top: 1%;
+				margin-bottom: 1%;
+				padding: 10rpx;
+				padding-left: 30rpx;
+				padding-right: 30rpx;
+			}
+	.send-button {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  width: 120rpx;
+	  height: 70rpx;
+	  background-color: #4095E5;
+	  color: white;
+	  border-radius: 20px;
+	  cursor: pointer;
+	 margin-right: 20rpx;
+	  position: relative;
+	  
+	  font-size: 25rpx;
+	}
+	.comment-item-main {
+	
+		.comment-item {
+			display: flex;
+			padding: 0 20rpx;
+	
+			.left {
+				width: 80rpx;
+				height: 80rpx;
+				border-radius: 50%;
+				overflow: hidden;
+	
+				.img {
+					width: 80rpx;
+					height: 80rpx;
+				}
+			}
+	
+			.content {
+				flex: 1;
+				margin: 0 20rpx;
+	
+				.title-name {
+					color: black;
+	
+					/* display: inline-block; */
+					view {
+						max-width: 150rpx;
+						display: inline-block;
+						margin-right: 20rpx;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+				}
+	
+				.content-text {
+					/* width: 480rpx; */
+					font-size: 16px;
+					display: flex;
+					align-items: flex-start;
+				}
+	
+				.content-btm {
+					color: #bbbbbb;
+	
+					.btm-back {
+						margin-left: 40rpx;
+						font-size: 16px;
+					}
+				}
+			}
+	
+			.right {
+				height: 70rpx;
+	
+				.img-like {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+	
+					image {
+						display: block;
+						width: 50rpx;
+						height: 50rpx;
+						margin-top: 20rpx;
+					}
+				}
+			}
+		}
+	
+		.spread {
+			color: #bbbbbb;
+			margin-left: 120rpx;
+			height: 17px;
+			position: relative;
+	
+			.down {
+				width: 0;
+				height: 0;
+				position: absolute;
+				margin-left: 5px;
+				top: 7px;
+				border-right: 8px solid transparent;
+				border-left: 8px solid transparent;
+				border-bottom: 8px solid transparent;
+				border-top: 8px solid #bbbbbb;
+			}
+	
+			.up {
+				width: 0;
+				height: 0;
+				position: absolute;
+				margin-left: 5px;
+				bottom: 4px;
+				border-right: 8px solid transparent;
+				border-left: 8px solid transparent;
+				border-bottom: 8px solid #bbbbbb;
+				border-top: 8px solid transparent;
+			}
+		}
+	}
+	
+	.items {
+		margin-left: 80rpx;
 	}
 </style>

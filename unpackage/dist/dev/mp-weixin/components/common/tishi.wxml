@@ -1,0 +1,1 @@
+<view><uni-popup class="vue-ref" vue-id="02262190-1" type="message" data-ref="tishi_2" bind:__l="__l" vue-slots="{{['default']}}"><uni-popup-message vue-id="{{('02262190-2')+','+('02262190-1')}}" type="{{tishiType}}" message="{{tishiText}}" duration="{{tishiTime}}" bind:__l="__l"></uni-popup-message></uni-popup></view>

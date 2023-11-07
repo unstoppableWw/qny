@@ -1,0 +1,136 @@
+
+.image-center {
+	  display: flex;
+	  align-items: center;
+	  justify-content: flex-start;
+	  height: 100%;
+}
+.feedback-page {
+  
+  padding: 40rpx;
+  background-color: white;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: solid lightgray 1rpx;
+}
+.icon {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+.icon ._img {
+  width: 30px;
+  height: 30px;
+}
+.title {
+  flex: 1;
+  font-size: 18px;
+  text-align: center;
+}
+.submit {
+  flex: 0 0 auto;
+  font-size: 16px;
+  color: #007bff;
+  cursor: pointer;
+}
+.section {
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.text-area {
+  width: 96%;
+  height: 220rpx;
+  font-size: 30rpx;
+  border-radius: 10rpx;
+  background-color: ghostwhite;
+  padding: 20rpx;
+}
+.add-image {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+}
+.image-item {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.image-preview ._img {
+  border: 1px solid #ccc;
+  padding: 3px;
+}
+.delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.button-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+.custom-button {
+  padding: 6px 12px; /* Adjust padding for smaller button size */
+  border: 1px solid #4095E5;
+  background-color: white;
+  color: #4095E5;
+  cursor: pointer;
+  font-size: 30rpx; /* Adjust font size for smaller button text */
+}
+.custom-button.active {
+  background-color: #4095E5;
+  color: white;
+}
+.image-container {
+	  position: relative;
+	  display: inline-block;
+	  margin-right: 10rpx; /* 添加右边间隙 */
+}
+.image-container image{
+	border-radius: 10rpx;
+	
+	width: 160rpx;
+	height: 160rpx;
+}
+.delete-btn {
+	position: absolute;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 2rpx;
+	  right: 2rpx;
+	  cursor: pointer;
+	  background-color: #4095E5;
+	  color: white;
+	  padding: 12rpx;
+	  height: 12rpx;
+	  width: 12rpx;
+	  font-size: 20rpx;
+	  border-radius: 10%;
+}
+.chushi_denglu{
+	display: flex;
+	background-color: #4095E5;
+	border-radius: 40rpx;
+	width: 600rpx;
+	height: 110rpx;
+	
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+

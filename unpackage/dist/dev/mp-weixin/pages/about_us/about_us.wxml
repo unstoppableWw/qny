@@ -1,0 +1,1 @@
+<view class="total_view"><view class="text_content">{{''+content1+''}}</view><view class="text_content">{{''+content2+''}}</view><view class="text_content">{{''+content3+''}}</view><view class="text_content">{{''+content4+''}}</view></view>
